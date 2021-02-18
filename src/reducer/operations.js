@@ -6,12 +6,14 @@ const URLS = {
 export const Operations = {
   load: (size) => (dispatch, _getState, api) => {
     if (size == "big") {
+      dispatch(ActionCreator.dataSize(size))
       api.get(URLS.big).then((response) => {
         dispatch(ActionCreator.loadToStore(response.data));
         dispatch(ActionCreator.loading(false))
       });
       
     } else {
+      dispatch(ActionCreator.dataSize(size))
       api.get(URLS.small).then((response) => {
         dispatch(ActionCreator.loadToStore(response.data));
         dispatch(ActionCreator.loading(false))
