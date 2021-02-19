@@ -4,7 +4,7 @@ export const Pages = (props) => {
     const {data,options,setPage}=props
   return (
     <div className="pagination">
-      {new Array(data.length / options.itemsInPage).fill("").map((it, i) => {
+      {new Array(Math.ceil(data.length / options.itemsInPage)).fill("").map((it, i) => {
         return (
           <span
             key={i}

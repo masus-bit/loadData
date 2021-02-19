@@ -2,9 +2,8 @@ import { actionType } from "./action-creator.js";
 const InitialState = {
   data: [],
   loading: null,
-  dataSize:null,
-  sortedData:[],
-
+  dataSize: null,
+  sortedData: [],
 };
 export const reducer = (state = InitialState, action) => {
   switch (action.type) {
@@ -18,22 +17,21 @@ export const reducer = (state = InitialState, action) => {
       });
     case actionType.DATA_SIZE:
       return Object.assign({}, state, {
-        dataSize:action.payload,
-      })
+        dataSize: action.payload,
+      });
     case actionType.SORT:
-      return Object.assign({},state,{
-        sortedData:action.payload,
-      })
+      return Object.assign({}, state, {
+        sortedData: action.payload,
+      });
     case actionType.CLEAR:
       return Object.assign({}, state, {
-        sortedData:action.payload
-      })
+        sortedData: action.payload,
+      });
     case actionType.SAVE:
-      
       return Object.assign({}, state, {
         data: new Array(action.payload).concat(state.data),
-        sortedData:new Array(action.payload).concat(state.sortedData)
-      })
+        sortedData: new Array(action.payload).concat(state.sortedData),
+      });
   }
   return state;
 };
