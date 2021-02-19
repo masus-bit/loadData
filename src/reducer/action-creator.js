@@ -5,7 +5,8 @@ export const actionType = {
     LOADING:"LOADING",
     DATA_SIZE:"DATA_SIZE",
     SORT:"SORT",
-    CLEAR:"CLEAR"
+    CLEAR:"CLEAR",
+    SAVE:"SAVE"
   };
   
   export const ActionCreator = {
@@ -37,6 +38,12 @@ export const actionType = {
       return{
         type:actionType.CLEAR,
         payload:[]
+      }
+    },
+    save:(id,firstName,lastName,email,phone)=>{
+      return{
+        type:actionType.SAVE,
+        payload:{id,firstName,lastName,email,phone}
       }
     }
 }

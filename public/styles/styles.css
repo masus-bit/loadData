@@ -1,7 +1,7 @@
-.progress{
-    position: absolute;
-    left: 48%;
-    top:10%;
+.progress {
+  position: absolute;
+  left: 48%;
+  top: 10%;
 }
 .lds-ellipsis {
   display: inline-block;
@@ -58,12 +58,10 @@
     transform: translate(24px, 0);
   }
 }
-  
-
 
 body {
-    background-size: 400% 400%;
-    padding: 50px;
+  background-size: 400% 400%;
+  padding: 50px;
   margin: 0;
   background-image: linear-gradient(
     to right top,
@@ -87,19 +85,18 @@ body {
   justify-content: center;
   align-items: center;
 }
-.bg{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.bg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.btn-wrapper{
-    border: 1px red solid;
-   
+.btn-wrapper {
+  border: 1px red solid;
 }
 .board {
   width: 80vw;
-min-height: 30vh;
+  min-height: 30vh;
   background-color: whitesmoke;
   border-radius: 10px;
   display: flex;
@@ -115,7 +112,6 @@ min-height: 30vh;
   border: none;
   background-image: linear-gradient(
     to left bottom,
-    
     #00b2ff,
     #00cfff,
     #00e8ff,
@@ -125,22 +121,33 @@ min-height: 30vh;
   height: 30px;
   border-radius: 5px;
   font-weight: bold;
+  margin-top: 20px;
 }
-.list{
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
 }
-.h{
-    font-weight: bold;
+.h {
+  font-weight: bold;
 }
-.col{
-    width:20%
+.col {
+  width: 20%;
 }
-.item{
-    display: flex;
-    flex-direction: row;
-    border-bottom: 2px dotted dimgrey;
+.item {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 2px dotted dimgrey;
+}
+.h div {
+  cursor: pointer;
+}
+.add {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hidden {
+  visibility: hidden;
 }

@@ -28,6 +28,12 @@ export const reducer = (state = InitialState, action) => {
       return Object.assign({}, state, {
         sortedData:action.payload
       })
+    case actionType.SAVE:
+      
+      return Object.assign({}, state, {
+        data: new Array(action.payload).concat(state.data),
+        sortedData:new Array(action.payload).concat(state.sortedData)
+      })
   }
   return state;
 };

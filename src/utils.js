@@ -48,5 +48,47 @@ export const sortData = (data, element, order) => {
           }
         });
       }
+    case options.lastName:
+      if (order === 1) {
+        return sortData.sort((a, b) => {
+          if (a.lastName.toLowerCase() < b.lastName.toLowerCase()) {
+            return -1;
+          } else if (a.lastName.toLowerCase() > b.lastName.toLowerCase()) {
+            return 1;
+          }
+        });
+      } else if (order === 2) {
+        return sortData.sort((a, b) => {
+          if (a.lastName.toLowerCase() > b.lastName.toLowerCase()) {
+            return -1;
+          } else if (a.lastName.toLowerCase() < b.lastName.toLowerCase()) {
+            return 1;
+          }
+        });
+      }
+      case options.email:
+      if (order === 1) {
+        return sortData.sort((a, b) => {
+          if (a.email.toLowerCase() < b.email.toLowerCase()) {
+            return -1;
+          } else if (a.email.toLowerCase() > b.email.toLowerCase()) {
+            return 1;
+          }
+        });
+      } else if (order === 2) {
+        return sortData.sort((a, b) => {
+          if (a.email.toLowerCase() > b.email.toLowerCase()) {
+            return -1;
+          } else if (a.email.toLowerCase() < b.email.toLowerCase()) {
+            return 1;
+          }
+        });
+      }
+      case options.phone:
+      if (order === 1) {
+        return sortData.sort((a, b) => a.phone - b.phone);
+      } else if (order === 2) {
+        return sortData.sort((a, b) => b.phone - a.phone);
+      }
   }
 };
