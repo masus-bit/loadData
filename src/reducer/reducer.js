@@ -1,6 +1,7 @@
 import { actionType } from "./action-creator.js";
 const InitialState = {
   data: [],
+  searchData:[],
   loading: null,
   dataSize: null,
   sortedData: [],
@@ -32,6 +33,10 @@ export const reducer = (state = InitialState, action) => {
         data: new Array(action.payload).concat(state.data),
         sortedData: new Array(action.payload).concat(state.sortedData),
       });
+      case actionType.SEARCH:
+        return Object.assign({},state,{
+          searchData:action.payload,
+        })
   }
   return state;
 };

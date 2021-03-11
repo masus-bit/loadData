@@ -58,7 +58,10 @@
     transform: translate(24px, 0);
   }
 }
-
+.search{
+  display: flex;
+  justify-content: space-around;
+}
 body {
   background-size: 400% 400%;
   padding: 50px;
@@ -91,9 +94,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-.btn-wrapper {
-  border: 1px red solid;
-}
+
 .board {
   width: 80vw;
   min-height: 30vh;
@@ -150,4 +151,23 @@ body {
 }
 .hidden {
   visibility: hidden;
+}
+.btn-wrapper{
+width: 500px;
+display: flex;
+justify-content: space-around;
+}
+.data-btn{
+  width: 150px;
+  height: 30px;
+  border: none;
+  background-color: #aa8fd8;
+  border-radius: 15px;
+  box-shadow: 0 0 5px; 
+  transition: 0.3s;
+  cursor: pointer;
+  outline: none;
+}
+.data-btn:hover{
+  background-color: #d16ba5;
 }

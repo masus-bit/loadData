@@ -2,34 +2,45 @@ import React, { Fragment, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { Item } from "../item/item.jsx";
 import { Pages } from "../pagination/pagination.jsx";
-import { ActionCreator } from "../reducer/action-creator.js";
-import { options, getData, sortData } from "../utils.js";
+import { ActionCreator } from "../../reducer/action-creator.js";
+import { options, getData, sortData } from "../../utils.js";
 import InputMask from "react-input-mask";
+import Search from "../search/search.jsx";
 
 const Main = (props) => {
   const [sortOrder, setOrder] = useState(1);
   const [page, setPage] = useState(1);
   const form = useRef(null);
   const saveBtn = useRef(null);
-  const { data, dataSize, onSortClick, sortedData, onSaveClick } = props;
-
+  const {
+    data,
+    searchData,
+    dataSize,
+    onSortClick,
+    sortedData,
+    onSaveClick,
+  } = props;
+  const [focus, setFocus] = useState(false);
+  const type = () => {
+    if (focus) {
+      console.log(searchData);
+      return searchData;
+    } else {
+      return data;
+    }
+  };
   return (
     <Fragment>
       <div className="board">
         <div className="add">
+          <Search setFocus={setFocus} />
           <form
             action=""
             ref={form}
             id="add"
             className="add-form hidden"
             onChange={(e) => {
-              if (
-                form.current.querySelector(".id").value.length > 1 &&
-                form.current.querySelector(".firstNameInp").value.length > 3 &&
-                form.current.querySelector(".lastNameInp").value.length > 3 &&
-                form.current.querySelector(".emailInp").value.length > 3 &&
-                form.current.querySelector(".phoneInp").value.length > 15
-              ) {
+              if (form.current.querySelector(".phoneInp").value.length > 1) {
                 saveBtn.current.disabled = false;
               } else {
                 saveBtn.current.disabled = true;
@@ -37,13 +48,14 @@ const Main = (props) => {
             }}
             onSubmit={(e) => {
               e.preventDefault();
-              const id=form.current.querySelector(".id").value;
-              const firstName=form.current.querySelector(".firstNameInp").value;
-              const lastName=form.current.querySelector(".lastNameInp").value;
-              const email=form.current.querySelector(".emailInp").value;
-              const phone=form.current.querySelector(".phoneInp").value;
-              
-              onSaveClick(id,firstName,lastName,email,phone)
+              const id = form.current.querySelector(".id").value;
+              const firstName = form.current.querySelector(".firstNameInp")
+                .value;
+              const lastName = form.current.querySelector(".lastNameInp").value;
+              const email = form.current.querySelector(".emailInp").value;
+              const phone = form.current.querySelector(".phoneInp").value;
+
+              onSaveClick(id, firstName, lastName, email, phone);
             }}
           >
             <input
@@ -78,13 +90,7 @@ const Main = (props) => {
               maskChar=" "
               className="phoneInp"
             />
-            <button
-              className="save"
-              ref={saveBtn}
-              type="submit"
-              disabled
-              
-            >
+            <button className="save" ref={saveBtn} type="submit" disabled>
               Добавить в таблицу
             </button>
           </form>
@@ -199,9 +205,9 @@ const Main = (props) => {
           </li>
 
           {sortedData.length < 2
-            ? data.length < 1
+            ? type().length < 1
               ? null
-              : getData(dataSize, data, page).map((it, i) => {
+              : getData(dataSize, type(), page).map((it, i) => {
                   return <Item item={it} key={i} />;
                 })
             : getData(dataSize, sortedData, page).map((it, i) => {
@@ -212,7 +218,7 @@ const Main = (props) => {
 
       {data.length < 1 ? null : data.length > options.itemsInPage ? (
         <Pages
-          data={!sortOrder == "empty" ? sortedData : data}
+          data={!sortOrder == "empty" ? sortedData : type()}
           options={options}
           setPage={setPage}
         />
@@ -223,6 +229,7 @@ const Main = (props) => {
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {
     data: state.data,
+    searchData: state.searchData,
     dataSize: state.dataSize,
     sortedData: state.sortedData,
   });

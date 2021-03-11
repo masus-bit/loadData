@@ -1,4 +1,4 @@
-import { sortData } from "../utils";
+import { searchContact, sortData } from "../utils";
 
 export const actionType = {
     LOAD_STORE: "LOAD_STORE",
@@ -6,7 +6,8 @@ export const actionType = {
     DATA_SIZE:"DATA_SIZE",
     SORT:"SORT",
     CLEAR:"CLEAR",
-    SAVE:"SAVE"
+    SAVE:"SAVE",
+    SEARCH:"SEARCH",
   };
   
   export const ActionCreator = {
@@ -44,6 +45,12 @@ export const actionType = {
       return{
         type:actionType.SAVE,
         payload:{id,firstName,lastName,email,phone}
+      }
+    },
+    search:(inputValue, contacts, field)=>{
+      return{
+        type:actionType.SEARCH,
+        payload:searchContact(inputValue,contacts,field)
       }
     }
 }

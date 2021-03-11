@@ -18,7 +18,6 @@ export const sliceArr = (arr) => {
 };
 
 export const getData = (size, data, page) => {
-  console.log(data);
   return !size == "big" ? data : sliceArr(data)[page - 1];
 };
 export const sortData = (data, element, order) => {
@@ -66,7 +65,7 @@ export const sortData = (data, element, order) => {
           }
         });
       }
-      case options.email:
+    case options.email:
       if (order === 1) {
         return sortData.sort((a, b) => {
           if (a.email.toLowerCase() < b.email.toLowerCase()) {
@@ -84,11 +83,51 @@ export const sortData = (data, element, order) => {
           }
         });
       }
-      case options.phone:
+    case options.phone:
       if (order === 1) {
         return sortData.sort((a, b) => a.phone - b.phone);
       } else if (order === 2) {
         return sortData.sort((a, b) => b.phone - a.phone);
       }
+  }
+};
+
+export const searchContact = (inputValue, contacts, field) => {
+  switch (field) {
+    case options.id:
+      return contacts.filter((item) => {
+        let regexp = new RegExp(`${inputValue}`, "i");
+        if (regexp.test(item.id)) {
+          return item;
+        }
+      });
+    case options.firstName:
+      return contacts.filter((item) => {
+        let regexp = new RegExp(`${inputValue}`, "i");
+        if (regexp.test(item.firstName)) {
+          return item;
+        }
+      });
+    case options.lastName:
+      return contacts.filter((item) => {
+        let regexp = new RegExp(`${inputValue}`, "i");
+        if (regexp.test(item.lastName)) {
+          return item;
+        }
+      });
+    case options.email:
+      return contacts.filter((item) => {
+        let regexp = new RegExp(`${inputValue}`, "i");
+        if (regexp.test(item.email)) {
+          return item;
+        }
+      });
+    case options.phone:
+      return contacts.filter((item) => {
+        let regexp = new RegExp(`${inputValue}`, "i");
+        if (regexp.test(item.phone)) {
+          return item;
+        }
+      });
   }
 };
