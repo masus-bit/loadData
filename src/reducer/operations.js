@@ -5,7 +5,7 @@ const URLS = {
 };
 export const Operations = {
   load: (size) => (dispatch, _getState, api) => {
-    if (size == "big") {
+    if (size.toLowerCase() == "big") {
       dispatch(ActionCreator.dataSize(size))
       api.get(URLS.big).then((response) => {
         dispatch(ActionCreator.loadToStore(response.data));

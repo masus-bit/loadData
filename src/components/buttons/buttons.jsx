@@ -10,12 +10,12 @@ const Buttons=(props)=>{
                 clear()
                 onClickBtn(e.target.textContent)
                 onLoading(true)
-                }}>BIG DATA</button>
+                }}>BIG</button>
             <button className="data-btn small" onClick={(e)=>{
                 clear()
                 onClickBtn(e.target.textContent)
                 onLoading(true)
-                }}>SHORT DATA</button>
+                }}>SHORT</button>
         </div>
     )
 }
